@@ -181,11 +181,7 @@ echo "<br>";
 echo ${$name};
 echo "<br>";
 
-echo "${$name}";
-echo "<br>";
-
-echo ${'elzero'};
-echo "<br>";
+مش فاكر ال 2 الباقيين
 
 ?>
 
@@ -205,6 +201,4 @@ echo $b; // 100
  <?php
  echo $_SERVER['DOCUMENT_ROOT'] . "<br>";
  echo $_SERVER['SERVER_NAME'] . "<br>";
- echo $_SERVER['SystemRoot'] . "<br>";
- echo $_SERVER['OPENSSL_CONF'] . "<br>";
  ?>
