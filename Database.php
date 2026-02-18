@@ -5,6 +5,7 @@ use PDO;
 class DB
 {
     public $connection;
+    public $statement;
 
     public function __construct($config, $username = "root", $password = "MyRoot@1234")
     {
@@ -18,8 +19,38 @@ class DB
 
     public function query($sql, array $params = [])
     {
-        $statement = $this->connection->prepare($sql);
-        $statement->execute($params);
-        return $statement;
+        $this->statement = $this->connection->prepare($sql);
+        $this->statement->execute($params);
+        return $this;
+    }
+
+
+    public function find()
+    {
+        return $this->statement->fetch();
+    }
+
+    public function  findOrFaild()
+    {
+        $result = $this->statement->fetch();
+        if (! $result) {
+            abort();
+        }
+        return $result;
+    }
+
+    public function fetchAll()
+    {
+        return $this->statement->fetchAll();
+    }
+
+    public function get()
+    {
+        return $this->statement->fetchAll();
+    }
+
+    public  function all()
+    {
+        return $this->statement->fetchAll();
     }
 }

@@ -13,3 +13,11 @@ function urls($value)
 {
     return ($_SERVER['REQUEST_URI'] === $value) ? "bg-gray-950/50 text-white"  :   "text-gray-300 hover:bg-white/5 hover:text-white";
 }
+
+
+function authorize ($condition, $statusCode = Response::FORBIDDEN)
+{
+    if (! $condition) {
+        abort($statusCode);
+    }
+}

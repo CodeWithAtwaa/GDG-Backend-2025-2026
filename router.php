@@ -1,18 +1,6 @@
 <?php
 
-
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-
-/**
- * All Routes of project ya man
- */
-$rouets = [
-    '/' => 'controllers/index.php',
-    '/about' => 'controllers/about.php',
-    '/notes' => 'controllers/notes.php',
-    '/note' => 'controllers/note.php',
-    '/contact' => 'controllers/contact.php'
-];
+$rouets  = require 'routes.php';
 
 /**
  * Summary of abort
@@ -41,4 +29,6 @@ function routeToControllers($uri, $rouets)
     }
 }
 
+
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 routeToControllers($uri, $rouets);
