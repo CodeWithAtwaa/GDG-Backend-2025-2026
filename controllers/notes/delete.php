@@ -1,8 +1,10 @@
 <?php
+
+use Core\App;
 use Core\Database;
 
-$config = require base_path("config.php");
-$statment = new Database($config['database']);
+$statment = App::container()->resolve(Database::class);
+
 
 $currentUserId = 1;
 
