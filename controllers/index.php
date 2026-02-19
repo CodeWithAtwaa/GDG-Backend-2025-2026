@@ -1,3 +1,3 @@
 <?php
-$haeding = "Home";
-require("views/index.view.php");
+$heading = "Home";
+ view("index.view.php" , compact("heading"));

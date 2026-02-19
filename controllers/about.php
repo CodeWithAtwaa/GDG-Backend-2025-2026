@@ -1,3 +1,4 @@
 <?php
-$haeding = "About Us";
-require('views/about.view.php');
+
+$heading = "About Us";
+ view("about.view.php" , compact("heading"));

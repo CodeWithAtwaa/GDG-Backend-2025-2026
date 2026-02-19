@@ -1,16 +1,17 @@
 <?php
-require 'Validator.php';
-$config = require("config.php");
-$statment = new db($config['database']);
+use Core\Database;
+use Core\Validator;
 
+require base_path("Core/Validator.php");
+$config = require base_path("config.php");
+$statment = new Database($config['database']);
+$errors = [];
 
-
-$haeding = "Create Note";
 
 $body = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $errors = [];
+
     $body = $_POST['body'];
 
     // check if body is less than 3 and greater than 255 characters
@@ -28,4 +29,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require ("views/notes/create.view.php");
+$heading = "Create Note";
+view("notes/create.view.php", compact("heading", "errors"));

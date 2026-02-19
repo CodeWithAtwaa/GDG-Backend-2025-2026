@@ -1,11 +1,10 @@
 <?php
-$config = require("config.php");
-$statment = new db($config['database']);
+use Core\Database;
+$config = require base_path("config.php");
+$statment = new Database($config['database']);
 
 
-$haeding = "My Notes";
+$notes = $statment->query("SELECT * FROM notes where user_id= ?", [1])->all();
 
-
-$notes = $statment->query( "SELECT * FROM notes where user_id= ?", [1])->all();
-
-require("views/notes/index.view.php");
+$heading = "My Notes";
+view("notes/index.view.php", compact("heading", "notes"));
