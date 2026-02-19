@@ -20,8 +20,8 @@
             ?>
         </ul>
 
-        <p>
-            <a href="/note/create" class="text-blue-500 hover:underline mt-5">Create note</a>
+        <p class="mt-5">
+            <a href="/note/create" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Create note</a>
         </p>
     </div>
 </main>

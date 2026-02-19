@@ -5,7 +5,7 @@
 
 <main>
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <form action="/note/create" method="POST" enctype="multipart/form-data">
+        <form action="/notes" method="POST" enctype="multipart/form-data">
             <label for="body" class="text-white block mb-2">Description</label>
             <div>
                <textarea name="body" id="body" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Write your notes..."><?= htmlspecialchars($_POST['body'] ?? '') ?></textarea>
