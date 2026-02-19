@@ -19,3 +19,5 @@ class Validator
         return filter_var(trim($value), FILTER_VALIDATE_EMAIL) ? true : false;
     }
 }
+
+
