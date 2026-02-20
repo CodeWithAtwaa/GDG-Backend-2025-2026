@@ -14,11 +14,19 @@
 
         <p class="text-white-500 pt-5 pb-3"><?= $note['body'] ?></p>
 
-        <form method="POST" action="/note/delete" class="mt-6">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="hidden" name="id" value="<?= $note['id'] ?>">
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit">Delete</button>
-        </form>
+
+
+        <footer class="mt-5 flex items-center gap-2">
+            
+            <a href="/note/edit?id=<?= $note['id'] ?>" class="bg-blue-500  text-white font-bold py-2 px-4 rounded mt-6">Edit Note</a>
+
+            <form method="POST" action="/note/delete" class="mt-6">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="id" value="<?= $note['id'] ?>">
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit">Delete</button>
+            </form>
+        </footer>
+
 
     </div>
 </main>
