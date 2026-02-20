@@ -39,13 +39,16 @@ if ($user) {
 
     $statment->query("INSERT INTO users (email, password) VALUES (:email, :password)", [
         'email' => $emil,
-        'password' => password_hash($password, PASSWORD_DEFAULT)
+        'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
 
-    $_SESSION['user'] = [
+    $statment->query("SELECT * FROM users WHERE email = :email", [
         'email' => $emil
-    ];
-    
+    ]);
+    $user = $statment->find();
+
+    login($user);
+
     header("Location: /");
     die();
 }

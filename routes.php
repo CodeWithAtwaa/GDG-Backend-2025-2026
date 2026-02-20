@@ -30,5 +30,8 @@ $router->get('/contact', 'controllers/contact.php');
 
 // Auth routes
 $router->get('/register', 'controllers/registeration/create.php')->only('guest');
-$router->post('/register', 'controllers/registeration/store.php');
+$router->post('/register', 'controllers/registeration/store.php')->only('guest');
 
+$router->get('/login', 'controllers/session/create.php')->only('guest');
+$router->post('/session', 'controllers/session/store.php')->only('guest');
+$router->delete('/session', 'controllers/session/destroy.php')->only('auth');

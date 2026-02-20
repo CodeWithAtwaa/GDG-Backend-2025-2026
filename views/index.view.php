@@ -5,7 +5,7 @@
 
 <main>
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <h1>Hello index</h1>
+        <h1 class="text-white">Hello, <?= $_SESSION['user']['name'] ?? 'Guest' ?>,Wellcome back  </h1>
     </div>
 </main>
 

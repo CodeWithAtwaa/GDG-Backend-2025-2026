@@ -68,10 +68,7 @@ class Router
             if ($route['uri'] === $uri && $route['method'] === $method) {
                 // run middleware only when one is configured and mapped
                 if (!empty($route['middleware']) && isset(Middleware::MAP[$route['middleware']])) {
-                    $middlewareClass = Middleware::MAP[$route['middleware']];
-                    if (is_string($middlewareClass) && class_exists($middlewareClass)) {
-                        (new $middlewareClass())->handle();
-                    }
+                    (new Middleware())->resolve($route['middleware']);
                 }
 
                 return require base_path($route['controller']);
