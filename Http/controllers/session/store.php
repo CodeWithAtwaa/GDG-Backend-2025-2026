@@ -3,7 +3,7 @@
 
 use Core\App;
 use Core\Database;
-use Core\Validator;
+use Http\Forms\LoginForm;
 
 $statment = App::container()->resolve(Database::class);
 
@@ -12,17 +12,13 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 
-$errors = [];
+$form = new LoginForm();
 
 
-// validate the form input
-Validator::email($emil) ?: $errors['email'] = "Email is not valid";
-Validator::string($password, 6, 255) ?: $errors['password'] = "Password must be greater than 6 characters";
-
-
-if (! empty($errors)) {
-    view("registeration/create.view.php", compact("errors"));
-    die();
+if (! $form->validate($email, $password)) {
+    view("registeration/create.view.php", [
+        "errors" => $form->errors()
+    ]);
 }
 
 

@@ -39,7 +39,7 @@ if ($user) {
 
     $statment->query("INSERT INTO users (email, password) VALUES (:email, :password)", [
         'email' => $emil,
-        'password' => password_hash($password, PASSWORD_BCRYPT)
+        'password' => password_hash($password, PASSWORD_DEFAULT)
     ]);
 
     $statment->query("SELECT * FROM users WHERE email = :email", [
