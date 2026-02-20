@@ -1,5 +1,4 @@
 <?php
-// update .php 
 use Core\App;
 use Core\Database;
 use Core\Validator;

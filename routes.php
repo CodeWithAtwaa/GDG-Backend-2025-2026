@@ -14,7 +14,7 @@
 $router->get('/', 'controllers/index.php');
 $router->get('/about', 'controllers/about.php');
 
-$router->get('/notes', 'controllers/notes/index.php');
+$router->get('/notes', 'controllers/notes/index.php')->only('auth');
 $router->get('/notes/delete', 'controllers/notes/delete.php');
 $router->get('/note', 'controllers/notes/show.php');
 
@@ -27,4 +27,8 @@ $router->patch('/note/update', 'controllers/notes/update.php');
 
 $router->get('/contact', 'controllers/contact.php');
 
+
+// Auth routes
+$router->get('/register', 'controllers/registeration/create.php')->only('guest');
+$router->post('/register', 'controllers/registeration/store.php');
 
