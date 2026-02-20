@@ -21,7 +21,8 @@ if ($form->validate($email, $password)) {
     $form->adderror("email", "Email is not valid");
 }
 
-Session::flash('_flashed', $form->errors());
+Session::flash('_flashed', value: $form->errors());
+Session::flash('_old', value: ['email' => $email]);
 
 return redirct('/login');
 
