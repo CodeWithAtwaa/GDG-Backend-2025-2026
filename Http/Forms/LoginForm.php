@@ -20,4 +20,9 @@ class LoginForm
     {
         return $this->errors;
     }
+
+    public function adderror($key, $message)
+    {
+        $this->errors[$key] = $message;
+    }
 }

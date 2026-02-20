@@ -1,12 +1,9 @@
 <?php
 
 
-use Core\App;
-use Core\Database;
 use Http\Forms\LoginForm;
-
-$statment = App::container()->resolve(Database::class);
-
+use Core\Authenticator;
+use Core\Session;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -15,33 +12,18 @@ $password = $_POST['password'];
 $form = new LoginForm();
 
 
-if (! $form->validate($email, $password)) {
-    view("registeration/create.view.php", [
-        "errors" => $form->errors()
-    ]);
-}
+if ($form->validate($email, $password)) {
+    $auth = new Authenticator();
 
-
-$statment->query("SELECT * FROM users WHERE email = :email", [
-    'email' => $email
-]);
-$user = $statment->find();
-
-if ($user) {
-    if (password_verify($password, $user['password'])) {
-        login([
-            'id' => $user['id'],
-            'email' => $user['email']
-        ]);
-
-
-        header('Location: /');
-        die();
+    if ($auth->attempt($email, $password)) {
+        redirct(path: "/");
     }
+    $form->adderror("email", "Email is not valid");
 }
 
-return view("session/create.view.php", [
-    'errors' => [
-        'email' => "Email or password is not correct"
-    ]
-]);
+Session::flash('_flashed', $form->errors());
+
+return redirct('/login');
+
+
+

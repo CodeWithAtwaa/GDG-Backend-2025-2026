@@ -41,6 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
     }
 
+    // $_SESSION['_flashed']['success'] = "Note created successfully";
+
     header("Location: /notes");
     die();
 }
