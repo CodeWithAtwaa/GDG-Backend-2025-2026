@@ -30,7 +30,8 @@ $user = $statment->find();
 if ($user) {
     if (password_verify($password, $user['password'])) {
         login([
-            'email' => $email
+            'id' => $user['id'],
+            'email' => $user['email']
         ]);
 
 

@@ -43,7 +43,8 @@ function view($path, $attributes = [])
 function login($user)
 {
     $_SESSION['user'] = [
-        'email' => $user['email']
+        'id' => isset($user['id']) ? $user['id'] : null,
+        'email' => isset($user['email']) ? $user['email'] : null,
     ];
 
     session_regenerate_id(true);

@@ -29,9 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //  inser into database
     if (empty($errors)) {
+        $user_id = $_SESSION['user']['id'] ?? null;
+        if (! $user_id) {
+            header('Location: /login');
+            die();
+        }
+
         $statment->query("INSERT INTO notes (body, user_id) VALUES (:body, :user_id)", [
             'body' => $body,
-            'user_id' => 1
+            'user_id' => $user_id
         ]);
     }
 
