@@ -6,11 +6,16 @@ use Core\Database;
 $statment = App::container()->resolve(Database::class);
 
 
-$currentUserId = 1;
+$currentUserId = $_SESSION['user']['id'] ?? null;
 
 $id = $_POST['id'] ?? $_GET['id'] ?? null;
 if (! $id) {
     abort(400);
+}
+
+if (! $currentUserId) {
+    header('Location: /login');
+    die();
 }
 
 $note = $statment->query("SELECT * FROM notes where id = :id", [

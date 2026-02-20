@@ -1,7 +1,9 @@
 <?php
 session_start();
+
 use Core\Router;
 use Core\Session;
+use Core\ValidationException;
 
 const BASE_PATH = __DIR__ . "/../";
 
@@ -9,9 +11,9 @@ const BASE_PATH = __DIR__ . "/../";
 
 require BASE_PATH . "Core/helper.php";
 
-spl_autoload_register(function ($class) {    
+spl_autoload_register(function ($class) {
     $class = str_replace("\\", DIRECTORY_SEPARATOR, $class);
-   require base_path("{$class}.php");
+    require base_path("{$class}.php");
 });
 
 // require(base_path("Core/Router.php"));
@@ -26,7 +28,17 @@ $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 if (isset($_POST['_method'])) {
     $method = $_POST['_method'];
 }
-$router->route($uri, $method);
+
+
+try {
+    $router->route($uri, $method);
+} catch (ValidationException $e) {
+    Session::flash('_flashed', value: $e->errors);
+    Session::flash('_old', value: $e->old);
+
+    
+    return redirct($router->previousURI());
+}
 
 
 Session::unflash();

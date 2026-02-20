@@ -50,6 +50,12 @@ class Router
     {
         return  $this->add($uri, $controller, 'PATCH');
     }
+
+
+    public function previousURI() {
+        return $_SERVER['HTTP_REFERER'] ;
+    }
+
     protected function abort($value = 404)
     {
         http_response_code($value);

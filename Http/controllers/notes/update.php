@@ -6,11 +6,16 @@ use Core\Validator;
 $statment = App::container()->resolve(Database::class);
 
 
-$currentUserId = 1;
+$currentUserId = $_SESSION['user']['id'] ?? null;
+
+if (! $currentUserId) {
+    header('Location: /login');
+    die();
+}
+
 $note = $statment->query("SELECT * FROM notes where id = :id", [
     'id' => $_POST['id']
 ])->findOrFaild();
-
 
 authorize($note['user_id'] === $currentUserId);
 
