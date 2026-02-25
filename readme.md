@@ -15,6 +15,8 @@ This repository demonstrates a small, structured PHP application with a custom r
 - `tests/` — unit and integration tests
 - `bootstrap.php`, `config.php`, `routes.php` — app boot and route definitions
 
+--------
+
 ## Features
 
 - Clean, minimal backend architecture
